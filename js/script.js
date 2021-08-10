@@ -17,3 +17,36 @@ const music = document.createElement("audio");
 music.src = "https://www.dropbox.com/s/ckcsaev4fznwple/01%20-%20Samadhi.mp3";
 
 
+setInterval(updateMusicSlider, 500);
+
+changePrevNextColor();
+
+playButton.addEventListener("click", () => {
+    playPauseTrack();
+});
+
+nextButton.addEventListener("click", () => {
+    isPlaying = false;
+    const resultObj = dll.traverse(1);
+
+    if(resultObj != 0){
+        music.src = resultObj.path;
+        playPauseTrack();
+    }
+    changeMusicTitle(resultObj.name);
+    changePrevNextColor();
+});
+
+prevButton.addEventListener("click", () =>{
+    isPlaying = false;
+    const resultObj = dll.traverse(-1);
+
+    if(resultObj != 0){
+        music.src = resultObj.path;
+        playPauseTrack();
+    }
+    changeMusicTitle(resultObj.name);
+    changePrevNextColor();
+});
+
+
